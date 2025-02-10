@@ -14,9 +14,8 @@ class Animal:
     def __repr__(self):
         return f"{{Name: {self.name}, Health: {self.health}, Hidden: {self.hidden}}}"
 
-    @classmethod
-    def __str__(cls):
-        return str(cls.alive)
+    def __str__(self):
+        return str(self.alive)
 
 
 class Herbivore(Animal):
@@ -27,7 +26,7 @@ class Herbivore(Animal):
 class Carnivore(Animal):
     @staticmethod
     def bite(feed):
-        if isinstance(feed, Herbivore) and not feed.hidden:
+        if isinstance(feed, Herbivore) and not feed.hidden and feed in Animal.alive:
             feed.health -= 50
             if feed.health <= 0:
                 feed.die()
